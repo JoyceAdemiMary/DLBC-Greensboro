@@ -43,7 +43,7 @@ function header() {
             <p>Achieving Heaven's Goal</p>
           </div>
         </div>
-        <nav class="desktop-nav">
+        <nav>
           <a href="#/">Home</a>
           <a href="#/about">About</a>
           <a href="#/ministries">Ministries</a>
@@ -52,42 +52,9 @@ function header() {
           <a href="#/contact">Contact</a>
           <a href="#/giving" style="color: var(--rich-red);">Give</a>
         </nav>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-btn">☰</button>
       </div>
-      
-      <!-- Mobile Navigation Menu -->
-      <nav class="mobile-nav">
-        <a href="#/" onclick="closeMobileMenu()">Home</a>
-        <a href="#/about" onclick="closeMobileMenu()">About</a>
-        <a href="#/ministries" onclick="closeMobileMenu()">Ministries</a>
-        <a href="#/sermons" onclick="closeMobileMenu()">Sermons</a>
-        <a href="#/events" onclick="closeMobileMenu()">Events</a>
-        <a href="#/contact" onclick="closeMobileMenu()">Contact</a>
-        <a href="#/giving" onclick="closeMobileMenu()" style="color: var(--rich-red);">Give</a>
-      </nav>
     </header>
-    
-    <script>
-      function toggleMobileMenu() {
-        const mobileNav = document.querySelector('.mobile-nav');
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        
-        if (mobileNav.classList.contains('active')) {
-          mobileNav.classList.remove('active');
-          menuBtn.innerHTML = '☰';
-        } else {
-          mobileNav.classList.add('active');
-          menuBtn.innerHTML = '✕';
-        }
-      }
-      
-      function closeMobileMenu() {
-        const mobileNav = document.querySelector('.mobile-nav');
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        mobileNav.classList.remove('active');
-        menuBtn.innerHTML = '☰';
-      }
-    </script>
   `
 }
 
