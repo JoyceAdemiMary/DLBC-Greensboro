@@ -12,11 +12,47 @@ const routes = {
   '/giving': givingPage,
 }
 
+function closeMobileMenu() {
+  const mobileMenu = document.querySelector('.mobile-menu')
+  if (mobileMenu) {
+    mobileMenu.classList.remove('active')
+  }
+}
+
+function setupMobileMenuListener() {
+  const toggle = document.getElementById('mobile-menu-toggle')
+  const mobileMenu = document.querySelector('.mobile-menu')
+  const mobileLinks = document.querySelectorAll('.mobile-menu a')
+
+  if (toggle) {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation()
+      mobileMenu.classList.toggle('active')
+    })
+  }
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileMenu()
+    })
+  })
+
+  document.addEventListener('click', (e) => {
+    if (mobileMenu && mobileMenu.classList.contains('active')) {
+      if (!e.target.closest('.header')) {
+        closeMobileMenu()
+      }
+    }
+  })
+}
+
 function router() {
   const path = window.location.hash.slice(1) || '/'
   const page = routes[path] || homePage
   app.innerHTML = page()
   updateActiveNav()
+  setupMobileMenuListener()
+  closeMobileMenu()
   window.scrollTo(0, 0)
 }
 
@@ -52,11 +88,21 @@ function header() {
           <a href="#/contact">Contact</a>
           <a href="#/giving" style="color: var(--rich-red);">Give</a>
         </nav>
-        <button class="mobile-menu-btn">☰</button>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle">☰</button>
       </div>
+      <nav class="mobile-menu">
+        <a href="#/">Home</a>
+        <a href="#/about">About</a>
+        <a href="#/ministries">Ministries</a>
+        <a href="#/sermons">Sermons</a>
+        <a href="#/events">Events</a>
+        <a href="#/contact">Contact</a>
+        <a href="#/giving" style="color: var(--rich-red);">Give</a>
+      </nav>
     </header>
   `
 }
+
 
 function footer() {
   return `
@@ -83,7 +129,7 @@ function footer() {
         <div class="footer-section">
           <h3>Service Times</h3>
           <p><strong>Sunday Worship</strong><br>9:00 AM</p>
-          <p style="margin-top: 12px;"><strong>Bible Study</strong><br>7:00 PM EST Every Fridays </p>
+          <p style="margin-top: 12px;"><strong>Bible Study</strong><br>7:00 PM EST Every Tuesdays </p>
           <p style="margin-top: 12px;"><strong>Prayer Meeting</strong><br>Coming Soon</p>
         </div>
       </div>
@@ -94,12 +140,14 @@ function footer() {
   `
 }
 
+// COMPLETE FIXED VERSION - Replace your homePage function with this
+
 function homePage() {
-  return `
+  const html = `
     ${header()}
     <section class="hero-slideshow">
       <div class="slides-container">
-        <div class="slide" style="background-image: url('/WhatsApp%20Image%202025-11-28%20at%2014.42.28_89664449.jpg'); background-position: center;">
+        <div class="slide active" style="background-image: url('/WhatsApp%20Image%202025-11-28%20at%2014.42.28_89664449.jpg'); background-position: center;">
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <div class="service-banner">Join Us for Sunday Service – 9 A.M Prompt Every Sunday</div>
@@ -108,7 +156,7 @@ function homePage() {
             <a href="#/contact" class="cta-button">Plan Your Visit</a>
           </div>
         </div>
-        <div class="slide" style="background-image: url('/church_4.jpg'); background-position: center;">
+        <div class="slide" style="background-image: url('/church 1.jpg'); background-position: center;">
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <div class="service-banner">Spirit-Filled Worship & Testimonies</div>
@@ -117,7 +165,7 @@ function homePage() {
             <a href="#/about" class="cta-button">Learn About Our Programs</a>
           </div>
         </div>
-        <div class="slide" style="background-image: url('/church_8.jpg'); background-position: center;">
+        <div class="slide" style="background-image: url('/CAMPUS PROGRAM 1.jpg'); background-position: center;">
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <div class="service-banner">Powerful Worship Experience</div>
@@ -128,51 +176,13 @@ function homePage() {
         </div>
       </div>
       <div class="slide-dots">
-        <span class="dot" onclick="window.goToSlide(0)"></span>
-        <span class="dot" onclick="window.goToSlide(1)"></span>
-        <span class="dot" onclick="window.goToSlide(2)"></span>
+        <span class="dot active" data-slide="0"></span>
+        <span class="dot" data-slide="1"></span>
+        <span class="dot" data-slide="2"></span>
       </div>
-      <button class="slide-nav prev" onclick="window.prevSlide()">❮</button>
-      <button class="slide-nav next" onclick="window.nextSlide()">❯</button>
+      <button class="slide-nav prev">❮</button>
+      <button class="slide-nav next">❯</button>
     </section>
-    <script>
-      (function() {
-        let currentSlide = 0;
-        const updateSlide = function() {
-          const slides = document.querySelectorAll('.slide');
-          const dots = document.querySelectorAll('.dot');
-          slides.forEach((slide, idx) => {
-            slide.style.opacity = idx === currentSlide ? '1' : '0';
-            slide.style.pointerEvents = idx === currentSlide ? 'auto' : 'none';
-          });
-          dots.forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === currentSlide);
-          });
-        };
-
-        window.goToSlide = function(n) {
-          currentSlide = (n + 3) % 3;
-          updateSlide();
-        };
-
-        window.nextSlide = function() {
-          currentSlide = (currentSlide + 1) % 3;
-          updateSlide();
-        };
-
-        window.prevSlide = function() {
-          currentSlide = (currentSlide - 1 + 3) % 3;
-          updateSlide();
-        };
-
-        updateSlide();
-        setInterval(() => {
-          currentSlide = (currentSlide + 1) % 3;
-          updateSlide();
-        }, 6000);
-      })();
-    </script>
-
 
     <section class="section">
       <div class="container">
@@ -215,6 +225,121 @@ function homePage() {
       </div>
     </section>
 
+    <!-- Gallery Carousel Section -->
+    <section style="padding: 80px 20px; background: linear-gradient(to bottom, #FFFFFF 0%, #F5F7FA 100%);">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            
+            <!-- Section Header -->
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-family: 'Playfair Display', serif; font-weight: 700; color: #031E79; font-size: 2.5em; margin: 0 0 20px 0;">Our Church Gallery</h2>
+                <p style="color: #6B7280; font-size: 1.1em; max-width: 700px; margin: 0 auto;">Moments of worship, fellowship, and community in action</p>
+            </div>
+
+            <!-- Carousel Container -->
+            <div style="position: relative; overflow: hidden; padding: 0 60px;">
+                
+                <!-- Carousel Track -->
+                <div id="carouselTrack" style="display: flex; gap: 20px; transition: transform 0.5s ease-in-out;">
+                    
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-slide" style="min-width: calc(33.333% - 14px); flex-shrink: 0; position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); aspect-ratio: 4/3; background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);">
+                        <img src="/church 1.jpg" alt="Sunday Worship" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.95), transparent); padding: 20px; color: #FFFFFF;">
+                            <h4 style="font-family: 'Playfair Display', serif; margin: 0 0 5px 0; font-size: 1.3em;">Sunday Worship</h4>
+                            <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">Celebrating God's presence together</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-slide" style="min-width: calc(33.333% - 14px); flex-shrink: 0; position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); aspect-ratio: 4/3; background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);">
+                        <img src="/CAMPUS PROGRAM 1.jpg" alt="Youth Ministry" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.95), transparent); padding: 20px; color: #FFFFFF;">
+                            <h4 style="font-family: 'Playfair Display', serif; margin: 0 0 5px 0; font-size: 1.3em;">Youth Ministry</h4>
+                            <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">Growing the next generation</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-slide" style="min-width: calc(33.333% - 14px); flex-shrink: 0; position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); aspect-ratio: 4/3; background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);">
+                        <img src="/church 3.jpg" alt="Prayer Meeting" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.95), transparent); padding: 20px; color: #FFFFFF;">
+                            <h4 style="font-family: 'Playfair Display', serif; margin: 0 0 5px 0; font-size: 1.3em;">Prayer Meeting</h4>
+                            <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">United in prayer</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 4 -->
+                    <div class="gallery-slide" style="min-width: calc(33.333% - 14px); flex-shrink: 0; position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); aspect-ratio: 4/3; background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);">
+                        <img src="/church 4.jpg" alt="Fellowship" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.95), transparent); padding: 20px; color: #FFFFFF;">
+                            <h4 style="font-family: 'Playfair Display', serif; margin: 0 0 5px 0; font-size: 1.3em;">Fellowship</h4>
+                            <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">Building community</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 5 -->
+                    <div class="gallery-slide" style="min-width: calc(33.333% - 14px); flex-shrink: 0; position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); aspect-ratio: 4/3; background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);">
+                        <img src="/church 5.jpg" alt="Community Outreach" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.95), transparent); padding: 20px; color: #FFFFFF;">
+                            <h4 style="font-family: 'Playfair Display', serif; margin: 0 0 5px 0; font-size: 1.3em;">Community Outreach</h4>
+                            <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">Serving with love</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 6 -->
+                    <div class="gallery-slide" style="min-width: calc(33.333% - 14px); flex-shrink: 0; position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); aspect-ratio: 4/3; background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);">
+                        <img src="/greens picture 3.jpg" alt="Special Event" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.95), transparent); padding: 20px; color: #FFFFFF;">
+                            <h4 style="font-family: 'Playfair Display', serif; margin: 0 0 5px 0; font-size: 1.3em;">Special Event</h4>
+                            <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">Celebrating together</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 7 -->
+                    <div class="gallery-slide" style="min-width: calc(33.333% - 14px); flex-shrink: 0; position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); aspect-ratio: 4/3; background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);">
+                        <img src="/CAMPUS PROGRAM 2.jpg" alt="Baptism Service" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.95), transparent); padding: 20px; color: #FFFFFF;">
+                            <h4 style="font-family: 'Playfair Display', serif; margin: 0 0 5px 0; font-size: 1.3em;">Campus Program</h4>
+                            <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">New life in Christ</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 8 -->
+                    <div class="gallery-slide" style="min-width: calc(33.333% - 14px); flex-shrink: 0; position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); aspect-ratio: 4/3; background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);">
+                        <img src="/church 8.jpg" alt="Choir Performance" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.95), transparent); padding: 20px; color: #FFFFFF;">
+                            <h4 style="font-family: 'Playfair Display', serif; margin: 0 0 5px 0; font-size: 1.3em;">Choir Performance</h4>
+                            <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">Worship in song</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Navigation Buttons -->
+                <button id="prevBtn" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); background: rgba(162, 24, 35, 0.9); color: #FFFFFF; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 24px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); z-index: 10; display: flex; align-items: center; justify-content: center;">
+                    ‹
+                </button>
+                <button id="nextBtn" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: rgba(162, 24, 35, 0.9); color: #FFFFFF; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 24px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); z-index: 10; display: flex; align-items: center; justify-content: center;">
+                    ›
+                </button>
+
+            </div>
+
+            <!-- Dots Indicator -->
+            <div id="dotsContainer" style="display: flex; justify-content: center; gap: 10px; margin-top: 30px;">
+                <!-- Dots will be generated by JavaScript -->
+            </div>
+
+            <!-- View All Button -->
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#/gallery" style="display: inline-block; background: #A21823; color: #FFFFFF; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-size: 1.1em; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(162, 24, 35, 0.4);">
+                    View Full Gallery
+                </a>
+            </div>
+
+        </div>
+    </section>
+
     <section class="section">
       <div class="container">
         <div class="section-header">
@@ -230,7 +355,7 @@ function homePage() {
           <div class="info-card">
             <div class="card-icon">📖</div>
             <h3>Bible Study</h3>
-            <p><strong>7:00 PM EST Every Fridays</strong><br>In-depth study of Scripture designed to deepen your understanding of God's Word and strengthen your faith foundation.</p>
+            <p><strong>7:00 PM EST Every Tuesdays </strong><br>In-depth study of Scripture designed to deepen your understanding of God's Word and strengthen your faith foundation.</p>
           </div>
           <div class="info-card">
             <div class="card-icon">🙏</div>
@@ -370,8 +495,392 @@ function homePage() {
     </section>
 
     ${footer()}
-  `
+  `;
+
+  // Initialize ALL features
+  setTimeout(() => {
+  initAllFeatures(); // This calls all 4 init functions
+  }, 0);
+
+  return html;
+} 
+
+// ========================================
+// HERO SLIDER INITIALIZATION
+// ========================================
+function initHeroSlider() {
+  const slideshowSection = document.querySelector('.hero-slideshow');
+  if (!slideshowSection) {
+    console.log('Hero slider not found - skipping initialization');
+    return;
+  }
+
+  let currentSlide = 0;
+  let slideInterval;
+  const totalSlides = 3;
+  const SLIDE_DURATION = 4000; // 8 seconds per slide (increased from 6)
+  let isTransitioning = false; // Prevent rapid clicking
+
+  const updateSlide = function() {
+    if (isTransitioning) return; // Prevent overlap during transition
+    
+    isTransitioning = true;
+    
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.slide-dots .dot');
+    
+    if (slides.length === 0) return;
+    
+    // Remove active from all slides
+    slides.forEach((slide, idx) => {
+      slide.classList.remove('active');
+    });
+    
+    // Small delay to ensure previous slide fades out before next appears
+    setTimeout(() => {
+      // Add active to current slide
+      slides[currentSlide].classList.add('active');
+      
+      // Update dots
+      dots.forEach((dot, idx) => {
+        if (idx === currentSlide) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+      
+      // Allow transitions again after animation completes
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 200); // Match the CSS transition duration
+      
+    }, 100); // Small delay between transitions
+  };
+
+  const goToSlide = function(n) {
+    if (isTransitioning) return;
+    currentSlide = n;
+    updateSlide();
+    resetInterval();
+  };
+
+  const nextSlide = function() {
+    if (isTransitioning) return;
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateSlide();
+  };
+
+  const prevSlide = function() {
+    if (isTransitioning) return;
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateSlide();
+  };
+
+  const resetInterval = function() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, SLIDE_DURATION);
+  };
+
+  // Event listeners
+  const nextBtn = document.querySelector('.slide-nav.next');
+  const prevBtn = document.querySelector('.slide-nav.prev');
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function() {
+      nextSlide();
+      resetInterval();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function() {
+      prevSlide();
+      resetInterval();
+    });
+  }
+
+  document.querySelectorAll('.slide-dots .dot').forEach(dot => {
+    dot.addEventListener('click', function() {
+      const slideIndex = parseInt(this.getAttribute('data-slide'));
+      goToSlide(slideIndex);
+    });
+  });
+
+  // Initialize
+  updateSlide();
+  slideInterval = setInterval(nextSlide, SLIDE_DURATION);
+
+  // Pause on hover
+  slideshowSection.addEventListener('mouseenter', function() {
+    clearInterval(slideInterval);
+  });
+
+  slideshowSection.addEventListener('mouseleave', function() {
+    slideInterval = setInterval(nextSlide, SLIDE_DURATION);
+  });
+
+  console.log('✅ Hero slider initialized successfully! (8s per slide)');
 }
+
+// ========================================
+// GALLERY CAROUSEL INITIALIZATION
+// ========================================
+function initGalleryCarousel() {
+  const track = document.getElementById('carouselTrack');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const dotsContainer = document.getElementById('dotsContainer');
+
+  if (!track || !prevBtn || !nextBtn || !dotsContainer) {
+    console.log('Gallery carousel elements not found - skipping initialization');
+    return;
+  }
+
+  const slides = document.querySelectorAll('.gallery-slide');
+  const totalSlides = slides.length;
+  const slidesToShow = 3;
+  const maxIndex = totalSlides - slidesToShow;
+  let currentIndex = 0;
+  let autoplayInterval;
+  const AUTOPLAY_DURATION = 5000; // Auto-advance every 5 seconds
+
+  // Create dots
+  dotsContainer.innerHTML = ''; // Clear existing dots
+  for (let i = 0; i <= maxIndex; i++) {
+    const dot = document.createElement('div');
+    dot.style.cssText = 'width: 12px; height: 12px; border-radius: 50%; background: #D1D5DB; cursor: pointer; transition: all 0.3s ease;';
+    if (i === 0) {
+      dot.style.background = '#A21823';
+      dot.style.width = '32px';
+      dot.style.borderRadius = '6px';
+    }
+    dot.addEventListener('click', () => {
+      goToSlide(i);
+      resetAutoplay(); // Reset autoplay when user clicks
+    });
+    dotsContainer.appendChild(dot);
+  }
+
+  const updateCarousel = () => {
+    const slideWidth = track.offsetWidth / slidesToShow;
+    const offset = -(currentIndex * (slideWidth + 20));
+    track.style.transform = `translateX(${offset}px)`;
+
+    // Update dots
+    const dots = dotsContainer.querySelectorAll('div');
+    dots.forEach((dot, idx) => {
+      if (idx === currentIndex) {
+        dot.style.background = '#A21823';
+        dot.style.width = '32px';
+        dot.style.borderRadius = '6px';
+      } else {
+        dot.style.background = '#D1D5DB';
+        dot.style.width = '12px';
+        dot.style.borderRadius = '50%';
+      }
+    });
+
+    // Update button states
+    prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+    prevBtn.style.cursor = currentIndex === 0 ? 'not-allowed' : 'pointer';
+    nextBtn.style.opacity = currentIndex === maxIndex ? '0.5' : '1';
+    nextBtn.style.cursor = currentIndex === maxIndex ? 'not-allowed' : 'pointer';
+  };
+
+  const goToSlide = (index) => {
+    if (index < 0 || index > maxIndex) return;
+    currentIndex = index;
+    updateCarousel();
+  };
+
+  const nextSlideCarousel = () => {
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+    } else {
+      currentIndex = 0; // Loop back to start
+    }
+    updateCarousel();
+  };
+
+  const prevSlideCarousel = () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCarousel();
+    }
+  };
+
+  // AUTO-PLAY function
+  const startAutoplay = () => {
+    autoplayInterval = setInterval(() => {
+      nextSlideCarousel();
+    }, AUTOPLAY_DURATION);
+  };
+
+  const stopAutoplay = () => {
+    clearInterval(autoplayInterval);
+  };
+
+  const resetAutoplay = () => {
+    stopAutoplay();
+    startAutoplay();
+  };
+
+  // Button event listeners
+  nextBtn.addEventListener('click', () => {
+    nextSlideCarousel();
+    resetAutoplay(); // Reset timer when user clicks
+  });
+
+  prevBtn.addEventListener('click', () => {
+    prevSlideCarousel();
+    resetAutoplay(); // Reset timer when user clicks
+  });
+
+  // Hover effects
+  [prevBtn, nextBtn].forEach(btn => {
+    btn.addEventListener('mouseenter', function() {
+      if (this.style.opacity !== '0.5') {
+        this.style.background = 'rgba(162, 24, 35, 1)';
+        this.style.transform = 'translateY(-50%) scale(1.1)';
+      }
+    });
+    btn.addEventListener('mouseleave', function() {
+      this.style.background = 'rgba(162, 24, 35, 0.9)';
+      this.style.transform = 'translateY(-50%) scale(1)';
+    });
+  });
+
+  // Pause autoplay on hover (desktop only)
+  const carouselSection = track.closest('section');
+  if (carouselSection) {
+    carouselSection.addEventListener('mouseenter', () => {
+      stopAutoplay();
+    });
+    
+    carouselSection.addEventListener('mouseleave', () => {
+      startAutoplay();
+    });
+  }
+
+  // Initialize
+  updateCarousel();
+  startAutoplay(); // Start auto-playing immediately
+
+  console.log('✅ Gallery carousel initialized successfully! (Auto-play every 5s)');
+}
+
+function initScrollAnimations() {
+  // Detect if mobile for optimized animations
+  const isMobile = window.innerWidth <= 768;
+  
+  const observerOptions = {
+    threshold: isMobile ? 0.1 : 0.15, // Trigger earlier on mobile
+    rootMargin: isMobile ? '0px 0px -20px 0px' : '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-visible');
+        
+        // On mobile, unobserve after animation to improve performance
+        if (isMobile) {
+          observer.unobserve(entry.target);
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe section headers
+  document.querySelectorAll('.section-header').forEach(header => {
+    observer.observe(header);
+  });
+
+  // Observe cards
+  document.querySelectorAll('.info-card').forEach(card => {
+    observer.observe(card);
+  });
+
+  document.querySelectorAll('.value-card').forEach(card => {
+    observer.observe(card);
+  });
+
+  document.querySelectorAll('.expectation-item').forEach(item => {
+    observer.observe(item);
+  });
+
+  document.querySelectorAll('.mission-card').forEach(card => {
+    observer.observe(card);
+  });
+
+  // Observe showcase sections
+  document.querySelectorAll('.church-showcase .showcase-image').forEach(img => {
+    img.classList.add('animate-fade-left');
+    observer.observe(img);
+  });
+
+  document.querySelectorAll('.church-showcase .showcase-text').forEach(text => {
+    text.classList.add('animate-fade-right');
+    observer.observe(text);
+  });
+
+  // Observe join section
+  document.querySelectorAll('.join-content').forEach(content => {
+    content.classList.add('animate-fade-left');
+    observer.observe(content);
+  });
+
+  document.querySelectorAll('.location-info').forEach(info => {
+    info.classList.add('animate-fade-right');
+    observer.observe(info);
+  });
+
+  console.log(`✅ Scroll animations initialized successfully! (${isMobile ? 'Mobile' : 'Desktop'} mode)`);
+}
+
+// ========================================
+// RESPONSIVE HANDLER - Optimize on resize
+// ========================================
+function initResponsiveHandler() {
+  let resizeTimer;
+  
+  window.addEventListener('resize', () => {
+    // Debounce resize events
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const isMobile = window.innerWidth <= 768;
+      console.log(`Screen size changed - ${isMobile ? 'Mobile' : 'Desktop'} mode`);
+      
+      // Re-initialize carousel to adjust layout
+      if (document.getElementById('carouselTrack')) {
+        const carousel = document.querySelector('#carouselTrack').closest('section');
+        if (carousel) {
+          // Trigger carousel update
+          const event = new Event('resize');
+          window.dispatchEvent(event);
+        }
+      }
+    }, 250);
+  });
+}
+
+// ========================================
+// INITIALIZE EVERYTHING
+// Call this in your homePage function
+// ========================================
+function initAllFeatures() {
+  initHeroSlider();
+  initGalleryCarousel();
+  initScrollAnimations();
+  initResponsiveHandler();
+}
+
+
+// SLIDER INITIALIZATION FUNCTION
+// Add this function OUTSIDE and AFTER your homePage function in main.js
+
+
 
 function aboutPage() {
   return `
@@ -1298,7 +1807,7 @@ function contactPage() {
               <div class="contact-details">
                 <h3>Service Times</h3>
                 <p><strong>Sunday Worship:</strong> 9:00 AM<br>
-                <strong>Bible Study:</strong> 7:00 PM Every Fridays <br>
+                <strong>Bible Study:</strong> 7:00 PM Every Tuesdays <br>
                 <strong>Prayer Meeting:</strong> Coming Soon</p>
               </div>
             </div>
