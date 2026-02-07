@@ -11,7 +11,7 @@
 
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.6;
-  font-weight: 400;
+font-weight: 400;
   color: var(--text-dark);
   background-color: var(--white);
 
@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 .header {
   background: var(--white);
   box-shadow: 0 2px 16px rgba(1, 18, 74, 0.08);
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 1000;
   transition: all 0.3s ease;
@@ -120,6 +120,42 @@ nav a.active::after {
   font-size: 24px;
   cursor: pointer;
   color: var(--dark-navy);
+  padding: 8px;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-bottom: 1px solid #E5E7EB;
+  box-shadow: 0 4px 12px rgba(1, 18, 74, 0.1);
+  z-index: 999;
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-menu a {
+  padding: 16px 24px;
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid #F0F0F0;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu a:hover {
+  background-color: var(--light-gray);
+  color: var(--deep-blue-1);
 }
 
 .hero-slideshow {
@@ -171,6 +207,9 @@ nav a.active::after {
   max-width: 800px;
   animation: slideContentFadeIn 1s ease-out forwards;
 }
+.slide.active{
+  opacity:1;
+}
 
 @keyframes slideContentFadeIn {
   from {
@@ -182,6 +221,22 @@ nav a.active::after {
     transform: translateY(0);
   }
 }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
 
 
 .slide-content h2 {
@@ -198,6 +253,71 @@ nav a.active::after {
   line-height: 1.6;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
+  /* Hover Effects */
+        .gallery-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        #prevBtn:hover, #nextBtn:hover {
+            background: rgba(193, 65, 71, 0.95);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        a[href="#/gallery"]:hover {
+            background: #C14147;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(162, 24, 35, 0.6);
+        }
+
+
+
+        
+        /* Dots Styling */
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(3, 30, 121, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #A21823;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .dot:hover {
+            background: rgba(162, 24, 35, 0.7);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .gallery-slide {
+                min-width: calc(50% - 10px) !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-slide {
+                min-width: 100% !important;
+            }
+
+            #prevBtn, #nextBtn {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 20px !important;
+            }
+
+            .gallery-slide h4 {
+                font-size: 1.1em !important;
+            }
+
+            .gallery-slide p {
+                font-size: 0.85em !important;
+            }
+        }
 
 .slide-dots {
   position: absolute;
@@ -360,6 +480,7 @@ nav a.active::after {
   gap: 48px;
   align-items: center;
   margin-top: 48px;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .showcase-image {
@@ -395,6 +516,131 @@ nav a.active::after {
   margin-top: 48px;
 }
 
+.gallery-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        #prevBtn:hover, #nextBtn:hover {
+            background: rgba(193, 65, 71, 0.95);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        a[href="#/gallery"]:hover {
+            background: #C14147;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(162, 24, 35, 0.6);
+        }
+
+        /* Dots Styling */
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(3, 30, 121, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #A21823;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .dot:hover {
+            background: rgba(162, 24, 35, 0.7);
+        }
+
+                /* Hover Effects */
+        .gallery-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        #prevBtn:hover, #nextBtn:hover {
+            background: rgba(193, 65, 71, 0.95);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        a[href="#/gallery"]:hover {
+            background: #C14147;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(162, 24, 35, 0.6);
+        }
+
+        /* Dots Styling */
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(3, 30, 121, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #A21823;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .dot:hover {
+            background: rgba(162, 24, 35, 0.7);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .gallery-slide {
+                min-width: calc(50% - 10px) !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-slide {
+                min-width: 100% !important;
+            }
+
+            #prevBtn, #nextBtn {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 20px !important;
+            }
+
+            .gallery-slide h4 {
+                font-size: 1.1em !important;
+            }
+
+            .gallery-slide p {
+                font-size: 0.85em !important;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .gallery-slide {
+                min-width: calc(50% - 10px) !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-slide {
+                min-width: 100% !important;
+            }
+
+            #prevBtn, #nextBtn {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 20px !important;
+            }
+
+            .gallery-slide h4 {
+                font-size: 1.1em !important;
+            }
+
+            .gallery-slide p {
+                font-size: 0.85em !important;
+            }
+        }
+
 .expectation-item {
   background: var(--white);
   padding: 32px;
@@ -402,6 +648,32 @@ nav a.active::after {
   box-shadow: 0 4px 16px rgba(1, 18, 74, 0.06);
   text-align: center;
   position: relative;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.expectation-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.expectation-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.expectation-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.expectation-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.expectation-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.expectation-item:nth-child(6) {
+  animation-delay: 0.6s;
 }
 
 .exp-number {
@@ -443,6 +715,16 @@ nav a.active::after {
   box-shadow: 0 4px 24px rgba(1, 18, 74, 0.06);
   text-align: center;
   transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.mission-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.mission-card:nth-child(2) {
+  animation-delay: 0.4s;
 }
 
 .mission-card:hover {
@@ -480,6 +762,32 @@ nav a.active::after {
   box-shadow: 0 4px 16px rgba(1, 18, 74, 0.06);
   text-align: center;
   transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.value-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.value-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.value-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.value-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.value-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.value-card:nth-child(6) {
+  animation-delay: 0.6s;
 }
 
 .value-card:hover {
@@ -598,6 +906,32 @@ nav a.active::after {
   box-shadow: 0 4px 24px rgba(1, 18, 74, 0.06);
   text-align: center;
   transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.info-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.info-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.info-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.info-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.info-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.info-card:nth-child(6) {
+  animation-delay: 0.6s;
 }
 
 .info-card:hover {
@@ -644,6 +978,44 @@ nav a.active::after {
   box-shadow: 0 4px 16px rgba(1, 18, 74, 0.06);
   transition: all 0.3s ease;
   border-top: 4px solid var(--deep-blue-1);
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.ministry-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.ministry-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.ministry-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.ministry-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.ministry-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.ministry-card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+.ministry-card:nth-child(7) {
+  animation-delay: 0.7s;
+}
+
+.ministry-card:nth-child(8) {
+  animation-delay: 0.8s;
+}
+
+.ministry-card:nth-child(9) {
+  animation-delay: 0.9s;
 }
 
 .ministry-card:hover {
@@ -689,6 +1061,32 @@ nav a.active::after {
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(1, 18, 74, 0.06);
   transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.content-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.content-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.content-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.content-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.content-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.content-card:nth-child(6) {
+  animation-delay: 0.6s;
 }
 
 .content-card:hover {
@@ -760,6 +1158,28 @@ nav a.active::after {
   gap: 32px;
   align-items: center;
   transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.event-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.event-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.event-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.event-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.event-card:nth-child(5) {
+  animation-delay: 0.5s;
 }
 
 .event-card:hover {
@@ -928,6 +1348,20 @@ nav a.active::after {
   box-shadow: 0 4px 24px rgba(1, 18, 74, 0.06);
   transition: all 0.3s ease;
   border: 2px solid transparent;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.giving-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.giving-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.giving-card:nth-child(3) {
+  animation-delay: 0.3s;
 }
 
 .giving-card:hover {
@@ -1026,6 +1460,10 @@ nav a.active::after {
 }
 
 @media (max-width: 768px) {
+  .header {
+    position: sticky;
+  }
+
   .header-container {
     padding: 0 16px;
   }
@@ -1036,6 +1474,16 @@ nav a.active::after {
 
   .mobile-menu-btn {
     display: block;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
   }
 
   .hero h2 {
@@ -1304,3 +1752,488 @@ nav a.active::after {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ========================================
+   UPDATED IMPROVEMENTS - Better Transparency & Mobile
+   ======================================== */
+
+/* ========================================
+   HERO SLIDER - More Transparent Blue Overlay
+   ======================================== */
+
+.hero-slideshow .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-slideshow .slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+/* MORE TRANSPARENT Blue overlay - Background images show better */
+.hero-slideshow .slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(3, 30, 121, 0.35) 0%,      /* More transparent - was 0.65 */
+    rgba(3, 30, 121, 0.40) 50%,     /* More transparent - was 0.70 */
+    rgba(3, 30, 121, 0.50) 100%     /* More transparent - was 0.75 */
+  );
+  z-index: 1;
+}
+
+.hero-slideshow .slide-content {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  color: white;
+}
+
+/* CTA Button */
+.hero-slideshow .slide-content .cta-button {
+  display: inline-block;
+  padding: 16px 40px;
+  background: #A21823;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(162, 24, 35, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-slideshow .slide-content .cta-button:hover {
+  background: #8B1520;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(162, 24, 35, 0.6);
+}
+
+.hero-slideshow .slide-content .cta-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.hero-slideshow .slide-content .cta-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Navigation arrows */
+.hero-slideshow .slide-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(162, 24, 35, 0.8);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hero-slideshow .slide-nav:hover {
+  background: rgba(162, 24, 35, 1);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 6px 25px rgba(162, 24, 35, 0.5);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero-slideshow .slide-nav:active {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.hero-slideshow .slide-nav.prev {
+  left: 30px;
+}
+
+.hero-slideshow .slide-nav.next {
+  right: 30px;
+}
+
+/* Dots */
+.hero-slideshow .slide-dots {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+}
+
+.hero-slideshow .slide-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+}
+
+.hero-slideshow .slide-dots .dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero-slideshow .slide-dots .dot.active {
+  width: 40px;
+  border-radius: 6px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+/* ========================================
+   GALLERY CAROUSEL - FIXED IMAGE SIZING
+   ======================================== */
+
+/* CRITICAL: Force images to fit inside container */
+.gallery-slide {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-slide img {
+  width: 100% !important;      /* Force width */
+  height: 100% !important;     /* Force height */
+  max-width: 100% !important;  /* Prevent overflow */
+  max-height: 100% !important; /* Prevent overflow */
+  object-fit: cover !important; /* Crop to fit */
+  object-position: center !important;
+  display: block !important;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+}
+
+/* Smooth hover effect */
+.gallery-slide:hover img {
+  transform: scale(1.08);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Gallery navigation buttons */
+#prevBtn,
+#nextBtn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+#prevBtn:hover,
+#nextBtn:hover {
+  background: rgba(162, 24, 35, 1) !important;
+  transform: translateY(-50%) scale(1.15) !important;
+  box-shadow: 0 6px 25px rgba(162, 24, 35, 0.6) !important;
+}
+
+/* ========================================
+   SCROLL ANIMATIONS - Desktop & Mobile
+   ======================================== */
+
+/* Base state */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delays */
+.animate-delay-1 { transition-delay: 0.1s; }
+.animate-delay-2 { transition-delay: 0.2s; }
+.animate-delay-3 { transition-delay: 0.3s; }
+.animate-delay-4 { transition-delay: 0.4s; }
+
+/* Fade from left */
+.animate-fade-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-fade-left.animate-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade from right */
+.animate-fade-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-fade-right.animate-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale up */
+.animate-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-scale.animate-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Cards animation */
+.info-card,
+.value-card,
+.expectation-item,
+.mission-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.info-card.animate-visible,
+.value-card.animate-visible,
+.expectation-item.animate-visible,
+.mission-card.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger cards */
+.info-card:nth-child(1) { transition-delay: 0.1s; }
+.info-card:nth-child(2) { transition-delay: 0.2s; }
+.info-card:nth-child(3) { transition-delay: 0.3s; }
+
+.value-card:nth-child(1) { transition-delay: 0.1s; }
+.value-card:nth-child(2) { transition-delay: 0.15s; }
+.value-card:nth-child(3) { transition-delay: 0.2s; }
+.value-card:nth-child(4) { transition-delay: 0.25s; }
+.value-card:nth-child(5) { transition-delay: 0.3s; }
+.value-card:nth-child(6) { transition-delay: 0.35s; }
+
+.expectation-item:nth-child(1) { transition-delay: 0.1s; }
+.expectation-item:nth-child(2) { transition-delay: 0.15s; }
+.expectation-item:nth-child(3) { transition-delay: 0.2s; }
+.expectation-item:nth-child(4) { transition-delay: 0.25s; }
+.expectation-item:nth-child(5) { transition-delay: 0.3s; }
+.expectation-item:nth-child(6) { transition-delay: 0.35s; }
+
+/* Section headers */
+.section-header {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section-header.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover effects */
+.info-card,
+.value-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease-out;
+}
+
+.info-card:hover,
+.value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE OPTIMIZATIONS
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Hero slider mobile */
+  .hero-slideshow .slide-nav {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+  }
+
+  .hero-slideshow .slide-nav.prev {
+    left: 15px;
+  }
+
+  .hero-slideshow .slide-nav.next {
+    right: 15px;
+  }
+
+  .hero-slideshow .slide-content .cta-button {
+    padding: 14px 32px;
+    font-size: 1rem;
+  }
+
+  /* MOBILE: Keep animations but make them faster/simpler */
+  .animate-on-scroll,
+  .animate-fade-left,
+  .animate-fade-right,
+  .animate-scale {
+    transition-duration: 0.5s; /* Faster on mobile */
+  }
+
+  /* Mobile: Reduce transform distance for better performance */
+  .animate-on-scroll {
+    transform: translateY(20px); /* Less movement */
+  }
+
+  .animate-fade-left {
+    transform: translateX(-30px); /* Less movement */
+  }
+
+  .animate-fade-right {
+    transform: translateX(30px); /* Less movement */
+  }
+
+  /* Mobile cards */
+  .info-card,
+  .value-card,
+  .expectation-item,
+  .mission-card {
+    transition-duration: 0.5s;
+  }
+
+  /* Mobile: Reduce stagger delays for faster reveal */
+  .info-card:nth-child(1) { transition-delay: 0.05s; }
+  .info-card:nth-child(2) { transition-delay: 0.1s; }
+  .info-card:nth-child(3) { transition-delay: 0.15s; }
+
+  .value-card:nth-child(1) { transition-delay: 0.05s; }
+  .value-card:nth-child(2) { transition-delay: 0.1s; }
+  .value-card:nth-child(3) { transition-delay: 0.15s; }
+  .value-card:nth-child(4) { transition-delay: 0.2s; }
+  .value-card:nth-child(5) { transition-delay: 0.25s; }
+  .value-card:nth-child(6) { transition-delay: 0.3s; }
+
+  /* Mobile: Keep hover effects subtle */
+  .info-card:hover,
+  .value-card:hover {
+    transform: translateY(-4px); /* Less movement on mobile */
+  }
+
+  /* Gallery carousel mobile adjustments */
+  .gallery-slide img {
+    object-fit: cover !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-slideshow .slide-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .hero-slideshow .slide-nav.prev {
+    left: 10px;
+  }
+
+  .hero-slideshow .slide-nav.next {
+    right: 10px;
+  }
+
+  /* Mobile: Even faster animations on very small screens */
+  .animate-on-scroll,
+  .animate-fade-left,
+  .animate-fade-right,
+  .animate-scale,
+  .info-card,
+  .value-card,
+  .expectation-item,
+  .mission-card {
+    transition-duration: 0.4s;
+  }
+
+  /* Mobile: Minimal movement */
+  .animate-on-scroll {
+    transform: translateY(15px);
+  }
+
+  .animate-fade-left,
+  .animate-fade-right {
+    transform: translateX(20px);
+  }
+}
+
+/* ========================================
+   MOBILE: Touch-friendly interactions
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Larger touch targets on mobile */
+  .hero-slideshow .slide-nav,
+  .hero-slideshow .slide-dots .dot,
+  #prevBtn,
+  #nextBtn {
+    min-width: 10px;
+    min-height: 10px;
+  }
+
+  /* Remove hover effects on touch devices (they stick) */
+  @media (hover: none) {
+    .info-card:hover,
+    .value-card:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .gallery-slide:hover img {
+      transform: none;
+    }
+
+    .hero-slideshow .slide-nav:hover {
+      transform: translateY(-50%) scale(1);
+    }
+  }
+}
+
