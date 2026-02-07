@@ -150,7 +150,7 @@ function homePage() {
         <div class="slide active" style="background-image: url('/WhatsApp%20Image%202025-11-28%20at%2014.42.28_89664449.jpg'); background-position: center;">
           <div class="slide-overlay"></div>
           <div class="slide-content">
-            <div class="service-banner">Join Us for Sunday Service – 9 A.M Prompt Every Sunday</div>
+            <div class="service-banner">Join Us for Sunday Service – 9 A.M </div>
             <h2>Welcome to Deeper Life Bible Church</h2>
             <p>Experience authentic worship, powerful teaching, and genuine fellowship as we journey together toward achieving heaven's goal.</p>
             <a href="#/contact" class="cta-button">Plan Your Visit</a>
