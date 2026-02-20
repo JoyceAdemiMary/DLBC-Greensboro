@@ -2237,3 +2237,219 @@ nav a.active::after {
   }
 }
 
+/* ========================================
+   JOIN US SECTION - MOBILE BUTTON FIX
+   Add this to your CSS file
+   ======================================== */
+
+/* Join Section Container */
+.join-section {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* Join Content Area */
+.join-content {
+  flex: 1;
+}
+
+.join-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+
+.join-content p {
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 24px;
+}
+
+/* Buttons Container */
+.join-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+/* CTA Button (Red) */
+.join-buttons .cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 40px;
+  background: #A21823;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(162, 24, 35, 0.3);
+  border: 2px solid #A21823;
+  white-space: nowrap;
+}
+
+.join-buttons .cta-button:hover {
+  background: #8B1520;
+  border-color: #8B1520;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(162, 24, 35, 0.4);
+}
+
+/* Secondary Button (Outlined) */
+.join-buttons .secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 40px;
+  background: transparent;
+  color: #031E79;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid #031E79;
+  white-space: nowrap;
+}
+
+.join-buttons .secondary-button:hover {
+  background: #031E79;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(3, 30, 121, 0.3);
+}
+
+/* Location Info */
+.location-info {
+  flex: 0 0 300px;
+  background: #f7fafc;
+  padding: 30px;
+  border-radius: 12px;
+  border-left: 4px solid #A21823;
+}
+
+.location-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.location-info p {
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.location-info strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE - CRITICAL FIX
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Stack join section vertically on mobile */
+  .join-section {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* Make location info full width on mobile */
+  .location-info {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  /* MOBILE BUTTONS - CRITICAL FIX */
+  .join-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    align-items: stretch; /* Make buttons full width */
+  }
+
+  /* Make buttons full width and properly centered */
+  .join-buttons .cta-button,
+  .join-buttons .secondary-button {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 16px 24px;
+    font-size: 1rem;
+    white-space: normal; /* Allow text to wrap if needed */
+    line-height: 1.4;
+    min-height: 56px; /* Ensure minimum touch target size */
+  }
+
+  /* Mobile heading sizes */
+  .join-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .location-info h3 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small screens */
+  .join-buttons .cta-button,
+  .join-buttons .secondary-button {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+  }
+
+  .join-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .join-content p {
+    font-size: 0.95rem;
+  }
+
+  .location-info {
+    padding: 20px;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY - Touch-Friendly
+   ======================================== */
+
+/* Ensure minimum touch target size on mobile */
+@media (max-width: 768px) {
+  .join-buttons a {
+    min-height: 48px; /* WCAG recommended minimum */
+    min-width: 48px;
+  }
+}
+
+/* Focus states for keyboard navigation */
+.join-buttons .cta-button:focus,
+.join-buttons .secondary-button:focus {
+  outline: 3px solid #4299e1;
+  outline-offset: 2px;
+}
+
+/* Active states for touch feedback */
+.join-buttons .cta-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(162, 24, 35, 0.3);
+}
+
+.join-buttons .secondary-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(3, 30, 121, 0.3);
+}
+
+
