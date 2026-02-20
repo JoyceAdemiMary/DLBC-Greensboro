@@ -129,8 +129,8 @@ function footer() {
         <div class="footer-section">
           <h3>Service Times</h3>
           <p><strong>Sunday Worship</strong><br>9:00 AM</p>
-          <p style="margin-top: 12px;"><strong>Bible Study</strong><br>7:00 PM EST Every Tuesdays </p>
-          <p style="margin-top: 12px;"><strong>Prayer Meeting</strong><br>Coming Soon</p>
+          <p style="margin-top: 12px;"><strong>Bible Study</strong><br>6:30 PM EST Every Thursday </p>
+          <p style="margin-top: 12px;"><strong>Prayer Meeting</strong><br>7:30 PM EST Every Sunday Evening</p>
         </div>
       </div>
       <div class="footer-bottom">
@@ -150,7 +150,7 @@ function homePage() {
         <div class="slide active" style="background-image: url('/WhatsApp%20Image%202025-11-28%20at%2014.42.28_89664449.jpg'); background-position: center;">
           <div class="slide-overlay"></div>
           <div class="slide-content">
-            <div class="service-banner">Join Us for Sunday Service – 9 A.M </div>
+            <div class="service-banner">Join Us for Sunday Service – 9 A.M Prompt Every Sunday</div>
             <h2>Welcome to Deeper Life Bible Church</h2>
             <p>Experience authentic worship, powerful teaching, and genuine fellowship as we journey together toward achieving heaven's goal.</p>
             <a href="#/contact" class="cta-button">Plan Your Visit</a>
@@ -176,9 +176,7 @@ function homePage() {
         </div>
       </div>
       <div class="slide-dots">
-        <span class="dot active" data-slide="0"></span>
-        <span class="dot" data-slide="1"></span>
-        <span class="dot" data-slide="2"></span>
+        
       </div>
       <button class="slide-nav prev">❮</button>
       <button class="slide-nav next">❯</button>
@@ -355,12 +353,12 @@ function homePage() {
           <div class="info-card">
             <div class="card-icon">📖</div>
             <h3>Bible Study</h3>
-            <p><strong>7:00 PM EST Every Tuesdays </strong><br>In-depth study of Scripture designed to deepen your understanding of God's Word and strengthen your faith foundation.</p>
+            <p><strong>6:30 PM EST Every Thursday </strong><br>In-depth study of Scripture designed to deepen your understanding of God's Word and strengthen your faith foundation.</p>
           </div>
           <div class="info-card">
             <div class="card-icon">🙏</div>
             <h3>Prayer Meeting</h3>
-            <p><strong>Coming Soon</strong><br>Corporate prayer gathering for intercession, thanksgiving, and seeking God's face together as a body.</p>
+            <p><strong>7:30 PM EST Every Sunday Evening</strong><br>Corporate prayer gathering for intercession, thanksgiving, and seeking God's face together as a body.</p>
           </div>
         </div>
       </div>
@@ -1294,8 +1292,8 @@ function eventsPage() {
           </div>
           <div class="info-card">
             <div class="card-icon">📖</div>
-            <h3>Tuesday Bible Study</h3>
-            <p><strong>7:00 PM EST</strong><br>In-depth study of Scripture to strengthen your biblical knowledge and understanding.</p>
+            <h3>Thursday Bible Study</h3>
+            <p><strong>6:30 PM EST</strong><br>In-depth study of Scripture to strengthen your biblical knowledge and understanding.</p>
           </div>
           <div class="info-card">
             <div class="card-icon">🙏</div>
@@ -1371,6 +1369,33 @@ function eventsPage() {
         </div>
       </div>
 
+      <!-- Gallery Item 4 -->
+      <div class="gallery-item" style="position: relative; height: 300px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <img src="/church 7.jpg" alt="Fellowship Gathering" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+        <div class="gallery-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.9), transparent); padding: 20px; transform: translateY(100%); transition: transform 0.3s ease;">
+          <h4 style="font-family: 'Playfair Display', serif; color: #FFFFFF; margin: 0 0 5px 0; font-size: 1.3em;">Fellowship Gathering</h4>
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 0.95em;">Building community through fellowship</p>
+        </div>
+      </div>
+
+      <!-- Gallery Item 5 -->
+      <div class="gallery-item" style="position: relative; height: 300px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <img src="/greens picture 4.jpg" alt="Community Outreach" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+        <div class="gallery-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.9), transparent); padding: 20px; transform: translateY(100%); transition: transform 0.3s ease;">
+          <h4 style="font-family: 'Playfair Display', serif; color: #FFFFFF; margin: 0 0 5px 0; font-size: 1.3em;">Community Outreach</h4>
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 0.95em;">Serving our community with love</p>
+        </div>
+      </div>
+
+      <!-- Gallery Item 6 -->
+      <div class="gallery-item" style="position: relative; height: 300px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <img src="/CAMPUS PROGRAM 2.jpg" alt="Special Event" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+        <div class="gallery-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.9), transparent); padding: 20px; transform: translateY(100%); transition: transform 0.3s ease;">
+          <h4 style="font-family: 'Playfair Display', serif; color: #FFFFFF; margin: 0 0 5px 0; font-size: 1.3em;">Special Event</h4>
+          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 0.95em;">Celebrating milestones together</p>
+        </div>
+      </div>
+
     </div>
 
     <!-- View More Button -->
@@ -1381,54 +1406,6 @@ function eventsPage() {
     </div>
   </div>
 </section>
-
-
-
-<!-- GALLERY SECTION -->
-<section class="section section-light" style="padding: 80px 20px; background: linear-gradient(to bottom, #F5F7FA 0%, #FFFFFF 100%);">
-  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-    <div class="section-header" style="text-align: center; margin-bottom: 50px;">
-      <h2 style="font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.2; color: #031E79; font-size: 2.5em; margin: 0 0 20px 0;">Our Campus Programme</h2>
-      <p style="color: #6B7280; font-size: 1.1em; max-width: 700px; margin: 0 auto 10px auto; line-height: 1.6;">This happened at UNCG (University of North Carolina Greensboro) </p>
-      <p style="color: #A21823; font-weight: 600; font-size: 1em;">Capturing moments of our campus programme </p>
-    </div>
-
-    <!-- Gallery Grid -->
-    <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px;">
-      
-      <!-- Gallery Item 1 -->
-      <div class="gallery-item" style="position: relative; height: 300px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-        <img src="/CAMPUS PROGRAM 1.jpg" alt="Sunday Worship Service" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
-        <div class="gallery-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.9), transparent); padding: 20px; transform: translateY(100%); transition: transform 0.3s ease;">
-          <h4 style="font-family: 'Playfair Display', serif; color: #FFFFFF; margin: 0 0 5px 0; font-size: 1.3em;">Sunday Worship Service</h4>
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 0.95em;">Celebrating God's presence together</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 2 -->
-      <div class="gallery-item" style="position: relative; height: 300px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-        <img src="/CAMPUS PROGRAM 2.jpg" alt="Youth Bible Study" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
-        <div class="gallery-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.9), transparent); padding: 20px; transform: translateY(100%); transition: transform 0.3s ease;">
-          <h4 style="font-family: 'Playfair Display', serif; color: #FFFFFF; margin: 0 0 5px 0; font-size: 1.3em;">Youth Bible Study</h4>
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 0.95em;">Growing the next generation of believers</p>
-        </div>
-      </div>
-
-      <!-- Gallery Item 3 -->
-      <div class="gallery-item" style="position: relative; height: 300px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-        <img src="/CAMPUS PROGRAM 3.jpg" alt="Prayer Meeting" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
-        <div class="gallery-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(1, 18, 74, 0.9), transparent); padding: 20px; transform: translateY(100%); transition: transform 0.3s ease;">
-          <h4 style="font-family: 'Playfair Display', serif; color: #FFFFFF; margin: 0 0 5px 0; font-size: 1.3em;">Prayer Meeting</h4>
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 0.95em;">United in prayer and intercession</p>
-        </div>
-      </div>
-     
-
-    <!-- View More Button -->
-    
-  </div>
-</section>
-
 
 
 <!-- VIDEO SECTION -->
@@ -1807,7 +1784,7 @@ function contactPage() {
               <div class="contact-details">
                 <h3>Service Times</h3>
                 <p><strong>Sunday Worship:</strong> 9:00 AM<br>
-                <strong>Bible Study:</strong> 7:00 PM Every Tuesdays <br>
+                <strong>Bible Study:</strong> 6:30 PM Every Thursday <br>
                 <strong>Prayer Meeting:</strong> Coming Soon</p>
               </div>
             </div>
