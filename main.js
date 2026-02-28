@@ -150,7 +150,7 @@ function homePage() {
         <div class="slide active" style="background-image: url('/WhatsApp%20Image%202025-11-28%20at%2014.42.28_89664449.jpg'); background-position: center;">
           <div class="slide-overlay"></div>
           <div class="slide-content">
-            <div class="service-banner">Join Us for Sunday Service – 9 A.M </div>
+            <div class="service-banner">Join Us for Sunday Service – 9 A.M Prompt Every Sunday</div>
             <h2>Welcome to Deeper Life Bible Church</h2>
             <p>Experience authentic worship, powerful teaching, and genuine fellowship as we journey together toward achieving heaven's goal.</p>
             <a href="#/contact" class="cta-button">Plan Your Visit</a>
@@ -1776,7 +1776,12 @@ function contactPage() {
               <div class="contact-icon">✉️</div>
               <div class="contact-details">
                 <h3>Email Us</h3>
-                <p>info@dlbcgreensboro.org</p>
+                <p>dlbcgreensborochurch@gmail.com</p>
+                <h3>Facebook</h3>
+                <p>Dlbc Greensboro</p>
+                <h3>Instagram</h3>
+                <p>@dlbcgreensboro</p>
+
               </div>
             </div>
             <div class="contact-item">
@@ -1907,6 +1912,112 @@ function givingPage() {
         </div>
       </div>
     </section>
+
+    <section class="section section-light">
+  <div class="container">
+    <div class="section-header">
+      <h2>Support Our Ministry</h2>
+      <p>Your generous giving helps us continue our mission and outreach</p>
+    </div>
+    
+    <div class="bank-accounts-container">
+      
+      <!-- Account 1 - USD Account -->
+      <div class="account-card">
+        <div class="account-icon"></div>
+        <h3>Bank Account Details </h3>
+        <div class="account-details">
+          <div class="account-item">
+            <span class="account-label">Bank Name:</span>
+            <span class="account-value">Zelle</span>
+          </div>
+          <div class="account-item">
+            <span class="account-label">Account Name:</span>
+            <span class="account-value">DLBC GREENSBORO</span>
+          </div>
+          <div class="account-item">
+            <span class="account-label">Account Number:</span>
+            <span class="account-value account-number">336-303-5110</span>
+            <button class="copy-btn" onclick="copyToClipboard('336-303-5110', this)">
+              <span class="copy-icon">📋</span>
+              <span class="copy-text">Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account 2 - Local Currency Account -->
+      <div class="account-card">
+        <div class="account-icon"></div>
+        <h3> Bank Account Details</h3>
+        <div class="account-details">
+          <div class="account-item">
+            <span class="account-label">Bank Name:</span>
+            <span class="account-value">Bank Of America </span>
+          </div>
+          <div class="account-item">
+            <span class="account-label">Account Name:</span>
+            <span class="account-value">Deeper Life Bible Church</span>
+          </div>
+          <div class="account-item">
+            <span class="account-label">Account Number:</span>
+            <span class="account-value account-number">237052681473</span>
+            <button class="copy-btn" onclick="copyToClipboard('237052681473', this)">
+              <span class="copy-icon">📋</span>
+              <span class="copy-text">Copy</span>
+            </button>
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Optional: Payment Info Note -->
+    <div class="payment-note">
+      <p><strong>Please Note:</strong> All donations are tax-deductible. After making a transfer, please email your receipt to <a href="dlbcgreensborochurch@gmail.com">dlbcgreensborochurch@gmail.com</a> for your tax records.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- JavaScript for Copy Functionality -->
+<script>
+function copyToClipboard(text, button) {
+  // Create temporary textarea
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  
+  // Select and copy
+  textarea.select();
+  textarea.setSelectionRange(0, 99999); // For mobile
+  
+  try {
+    document.execCommand('copy');
+    
+    // Change button text to "Copied!"
+    const copyText = button.querySelector('.copy-text');
+    const originalText = copyText.textContent;
+    copyText.textContent = 'Copied!';
+    button.classList.add('copied');
+    
+    // Reset after 2 seconds
+    setTimeout(() => {
+      copyText.textContent = originalText;
+      button.classList.remove('copied');
+    }, 2000);
+    
+  } catch (err) {
+    console.error('Failed to copy:', err);
+    alert('Copy failed. Please try again.');
+  }
+  
+  document.body.removeChild(textarea);
+}
+</script>
     ${footer()}
   `
 }
