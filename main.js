@@ -979,7 +979,7 @@ function aboutPage() {
             
             <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 50px; margin-top: 40px; margin-bottom: 60px; align-items: start;">
     <div style="width: 100%; aspect-ratio: 3/4; background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%); border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); animation: fadeInLeft 0.8s ease;">
-        <img src="/church 7.jpg" alt="Pastor Samuel Olaoye" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+        <img src="/dlbc pastor.jpeg" alt="Pastor Samuel Olaoye" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
     </div>
     <div style="animation: fadeInRight 0.8s ease;">
         <div style="color: #A21823; font-size: 1.1em; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">Resident Pastor</div>
